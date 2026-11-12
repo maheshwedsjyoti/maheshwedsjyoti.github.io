@@ -75,7 +75,7 @@
   .divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 18px auto 0; color: var(--gold); }
   .divider::before, .divider::after { content: ''; height: 1px; width: min(90px, 22vw); background: linear-gradient(90deg, transparent, var(--gold)); }
   .divider::after { background: linear-gradient(90deg, var(--gold), transparent); }
-  .sec-title { font-family: var(--script); font-weight: 400; font-size: clamp(2.8rem, 9vw, 4.4rem); line-height: 1.15; margin-top: 8px; padding: 0 .25em .05em;
+  .sec-title { font-family: var(--script); font-weight: 400; font-size: clamp(2.8rem, 9vw, 4.4rem); line-height: 1.15; margin-top: 0; padding: .12em .3em .3em; margin-bottom: -.22em;
     background: linear-gradient(100deg, var(--gold) 0%, var(--gold-2) 30%, #fff6d6 45%, var(--gold-2) 60%, var(--gold) 100%); background-size: 250% 100%;
     -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 6s linear infinite; }
   @keyframes shimmer { from { background-position: 100% 0; } to { background-position: -150% 0; } }
@@ -118,7 +118,7 @@
   .hero .eyebrow { margin-top: 30px; display: block; }
   .names { font-family: var(--script); font-weight: 400; font-size: clamp(4rem, 15vw, 8.4rem); line-height: 1; color: var(--gold-2);
     background: linear-gradient(180deg, var(--gold-3) 10%, var(--gold-2) 45%, var(--gold) 75%, #b88a33); -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 4px 18px rgba(0,0,0,.35)); margin-top: 16px; padding: 0 .3em .06em; }
+    filter: drop-shadow(0 4px 18px rgba(0,0,0,.35)); margin-top: 0; padding: .14em .4em .42em; margin-bottom: -.3em; overflow: visible; }
   .names .dr { font-family: var(--serif); font-style: italic; font-size: .32em; vertical-align: .9em; margin-right: .1em; }
   .names .amp { display: block; font-family: var(--serif); font-style: italic; font-size: .4em; color: var(--rose); -webkit-text-fill-color: var(--rose); margin: .04em 0 .08em; }
   .hero-date { font-family: var(--serif); font-weight: 500; font-size: clamp(1.2rem, 4.2vw, 1.6rem); letter-spacing: .28em; margin-top: 26px; color: var(--cream); }
