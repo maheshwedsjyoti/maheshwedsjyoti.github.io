@@ -699,10 +699,20 @@
       cx.globalAlpha = 1;
       if (parts.length) requestAnimationFrame(tick); else { running = false; cx.clearRect(0, 0, W, H); }
     }
+    // fire only on a real tap: finger down and up quickly, without moving or scrolling in between
+    let down = null;
     addEventListener('pointerdown', e => {
-      if (e.target.closest('a, button, iframe, input, .themes')) return;   // links & buttons keep working normally
+      if (!e.isPrimary || e.target.closest('a, button, iframe, input, .themes')) { down = null; return; }   // links & buttons keep working normally
+      down = { x: e.clientX, y: e.clientY, t: performance.now(), sy: scrollY };
+    }, { passive: true });
+    addEventListener('pointermove', e => { if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 10) down = null; }, { passive: true });
+    addEventListener('pointercancel', () => { down = null; }, { passive: true });     // browser took over for scrolling
+    addEventListener('scroll', () => { if (down && Math.abs(scrollY - down.sy) > 4) down = null; }, { passive: true });
+    addEventListener('pointerup', e => {
+      const d = down; down = null;
+      if (!d || performance.now() - d.t > 450 || Math.hypot(e.clientX - d.x, e.clientY - d.y) > 10 || Math.abs(scrollY - d.sy) > 4) return;
       burst(e.clientX, e.clientY); hint.classList.remove('show');
-      try { localStorage.setItem('mj-tapped', '1'); } catch (e) {}
+      try { localStorage.setItem('mj-tapped', '1'); } catch (err) {}
     }, { passive: true });
     // show a hint once, and a welcome burst when the page opens
     const hint = document.getElementById('tapHint'); let seen = false; try { seen = !!localStorage.getItem('mj-tapped'); } catch (e) {}
